@@ -19,7 +19,7 @@ export default function Home() {
 
             <Link href="/quran">
               <Box
-                  imageSource="https://github.com/somerandomguythatneedshelp/islam/blob/main/public/images/Quran.png?raw=true"
+                  imageSource="/images/Quran.png"
                   imageAlt="Image description"
                   text="Q'uran"
               />
@@ -29,7 +29,7 @@ export default function Home() {
 
               <Link href="/timings">
                   <Box
-                      imageSource="https://github.com/somerandomguythatneedshelp/islam/blob/main/public/images/namaz.png?raw=true"
+                      imageSource="/images/namaz.png"
                       imageAlt="Image description"
                       text="Salah Timings"
                   />
