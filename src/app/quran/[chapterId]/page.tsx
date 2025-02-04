@@ -18,6 +18,7 @@ export default function ChapterPage() {
     const [error, setError] = useState<string | null>(null);
     const observer = useRef<IntersectionObserver | null>(null);
     const perPage = 50;
+    const formattedChapterId = chapterId.toString().padStart(3, '0');
 
     const fetchVerses = useCallback(async (page: number) => {
         setLoading(true);
@@ -81,8 +82,8 @@ export default function ChapterPage() {
 
     return (
         <div className="max-w-4xl mx-auto p-4">
-            <h1 className="text-3xl font-bold text-center mb-8">
-                Chapter {chapterId} Verses
+            <h1 className="arabic-surahtitle text-5xl font-bold text-center mb-8">
+                {formattedChapterId} surah
             </h1>
 
             <div className="space-y-4">
@@ -93,7 +94,7 @@ export default function ChapterPage() {
                         className="p-4 border rounded-lg"
                     >
                         <h2 className="text-xl font-semibold">Verse {verse.verse_number}</h2>
-                        <p className="text-2xl text-right font-arabic mt-2">
+                        <p className="text-4xl text-right arabic-verses mt-2">
                             {verse.text_madani}
                         </p>
                     </div>
@@ -109,9 +110,9 @@ export default function ChapterPage() {
             )}
 
             {!hasMore && (
-                <div className="text-center p-4 text-gray-500">
-                    All {verses.length} verses loaded
-                </div>
+                 <div className="text-center p-4 text-gray-500">
+
+                 </div>
             )}
         </div>
     );

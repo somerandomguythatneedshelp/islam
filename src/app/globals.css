@@ -36,6 +36,13 @@
   font-display: swap;
 }
 
+.arabic-verses {
+  font-family: "UthmanicHafs";
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 @font-face {
   font-family: "surahnames";
   src: url("/fonts/quran/surah-names/v1/sura_names.woff2"),
