@@ -1,0 +1,11 @@
+{
+  "name": "Islam",
+  "short_name": "Islam",
+  "theme_color": "#FFFFFF",
+  "background_color": "#FFFFFF",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "categories": ["books", "education"],
+  "description": "Islam Is the website to check Ramadan Timings and Read the Holy Q'uran"
+}
