@@ -31,7 +31,7 @@ export default function ChapterPage() {
             if (!response.ok) throw new Error('Failed to fetch verses');
 
             const data = await response.json();
-            const newVerses = data.verses.map((verse: any) => ({
+            const newVerses = data.verses.map((verse: never) => ({
                 id: verse.id,
                 verse_number: verse.verse_number,
                 text_madani: verse.text_madani
