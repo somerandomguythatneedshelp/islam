@@ -93,16 +93,17 @@ export default function ChapterPage() {
                         ref={index === verses.length - 1 ? lastVerseRef : null}
                         className="p-4 border rounded-lg"
                     >
-                        <h2 className="text-xl font-semibold">Verse {verse.verse_number}</h2>
+                        <h2 className="text-xl font-semibold">{chapterId}:{verse.verse_number}</h2>
                         <p className="text-4xl text-right arabic-verses mt-2">
                             {verse.text_madani}
                         </p>
+                        <p className="text-3xl mt2">test</p>
                     </div>
                 ))}
             </div>
 
             {loading && (
-                <div className="text-center p-4 text-gray-500">Loading more verses...</div>
+                <div className="text-center p-4 text-gray-500">Loading...</div>
             )}
 
             {error && (

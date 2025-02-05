@@ -4,6 +4,24 @@ import { useState, useEffect } from 'react';
 import SurahBox from '../components/Home/SurahBox';
 import type { Surah } from '@/app/types/surah';
 
+// Add a reusable SurahList component
+const SurahList = ({ surahs }: { surahs: Surah[] }) => (
+    <div className="flex flex-wrap justify-center gap-4 max-w-6xl mx-auto p-4">
+        {surahs.map((surah) => (
+            <div key={surah.id} className="m-1">
+                <SurahBox
+                    chapterId={surah.id}
+                    topText={surah.name_simple}
+                    bottomText={surah.translated_name.name}
+                    number={surah.verses_count}
+                    versesText="verses"
+                    href={`/quran/${surah.id}`}
+                />
+            </div>
+        ))}
+    </div>
+);
+
 export default function QuranPage() {
     const [surahs, setSurahs] = useState<Surah[]>([]);
     const [loading, setLoading] = useState(true);
@@ -31,20 +49,7 @@ export default function QuranPage() {
     return (
         <div>
             <h1 className="text-3xl font-bold text-center my-8">The Noble Quran</h1>
-            <div className="flex flex-wrap justify-center gap-4 max-w-6xl mx-auto p-4">
-                {surahs.map((surah) => (
-                    <div key={surah.id} className="m-1">
-                        <SurahBox
-                            chapterId={surah.id}
-                            topText={surah.name_simple}
-                            bottomText={surah.translated_name.name}
-                            number={surah.verses_count}
-                            versesText="verses"
-                            href={`/quran/${surah.id}`}
-                        />
-                    </div>
-                ))}
-            </div>
+            <SurahList surahs={surahs} />
         </div>
     );
 }
