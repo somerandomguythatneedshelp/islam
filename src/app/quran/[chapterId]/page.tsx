@@ -2,12 +2,7 @@
 
 import { useParams } from 'next/navigation';
 import { useEffect, useState, useRef, useCallback } from 'react';
-
-interface Verse {
-    id: number;
-    verse_number: number;
-    text_madani: string;
-}
+import type { Verse } from '@/app/types/verse';
 
 export default function ChapterPage() {
     const { chapterId } = useParams();
@@ -31,7 +26,7 @@ export default function ChapterPage() {
             if (!response.ok) throw new Error('Failed to fetch verses');
 
             const data = await response.json();
-            const newVerses = data.verses.map((verse: never) => ({
+            const newVerses = data.verses.map((verse: any) => ({
                 id: verse.id,
                 verse_number: verse.verse_number,
                 text_madani: verse.text_madani
