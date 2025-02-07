@@ -17,7 +17,7 @@ const QuranWord = ({ word }: QuranWordProps) => {
             style={{
                 display: 'inline-block',
                 position: 'relative',
-                color: isHovered ? '#2563eb' : '#000',
+                color: isHovered ? '#ee1c1c' : '#e7e9ea',
                 transition: 'color 0.2s ease',
                 cursor: 'pointer',
                 unicodeBidi: 'isolate',

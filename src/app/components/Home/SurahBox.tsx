@@ -44,7 +44,7 @@ const SurahBox: React.FC<BoxProps> = ({ chapterId, topText, bottomText, number, 
     const formattedChapterId = chapterId.toString().padStart(3, '0');
 
     const content = (
-        <div className="flex items-center bg-white-50 border p-5 rounded-lg hover:text-neutral-900 transition-colors duration-200 text-gray-100 w-72">
+        <div className="flex items-center bg-white-50 border p-3 rounded-lg hover:text-red-600 transition-colors duration-200 text-white w-72">
             <TiltedSquare chapterId={chapterId} />
             <MiddleText topText={topText} bottomText={bottomText} />
             <RightContent formattedChapterId={formattedChapterId} number={number} versesText={versesText} />

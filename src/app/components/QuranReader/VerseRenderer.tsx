@@ -34,6 +34,8 @@ const VerseRenderer = ({ arabicText, verseNumber }: VerseRendererProps) => {
             ))}
             <span className="leading-normal arabic-font-1 text-5xl">{toArabicNumerals(verseNumber)}</span>
         </div>
+
+
     );
 };
 

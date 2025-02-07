@@ -4,6 +4,8 @@ import { useParams } from 'next/navigation';
 import { useEffect, useState, useRef, useCallback } from 'react';
 import VerseRenderer from '@/app/components/QuranReader/VerseRenderer';
 import { toArabicNumerals } from '@/app/types/ArabicNumbers';
+import SettingsMenu from '@/app/components/Quran/SettingsMenu';
+import { useTranslation } from '@/app/componentscontext/TranslationContext';
 
 interface Verse {
     id: number;
@@ -103,10 +105,7 @@ export default function ChapterPage() {
                         ref={index === verses.length - 1 ? lastVerseRef : null}
                         className="p-4 border rounded-lg"
                     >
-                        {/* Verse number display */}
-                        <div className="text-xl font-semibold mb-4">
-                            {toArabicNumerals(verse.verse_number)}
-                        </div>
+
 
                         <VerseRenderer
                             arabicText={verse.text_madani}
