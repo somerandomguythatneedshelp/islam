@@ -93,7 +93,7 @@ export default function ChapterPage() {
     return (
         <div className="max-w-4xl mx-auto p-4">
             <h1 className="arabic-surahtitle text-5xl font-bold text-center mb-8">
-                {toArabicNumerals(chapterId.toString().padStart(3, '0'))}
+                {chapterId.toString().padStart(3, '0')} surah
             </h1>
 
             <div className="space-y-4">

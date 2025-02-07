@@ -208,7 +208,8 @@ body {
 }
 
 .quran-word:hover {
-    color: #2563eb; /* blue-600 */
+    color: #1b4ebb; /* blue-600 */
+    background-color: rgba(25, 25, 25, 0.225);
 }
 
 * {

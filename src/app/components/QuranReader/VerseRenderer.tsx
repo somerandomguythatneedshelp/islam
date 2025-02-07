@@ -7,7 +7,7 @@ import { toArabicNumerals } from '@/app/types/ArabicNumbers';
 
 interface VerseRendererProps {
     arabicText: string;
-    verseNumber: number; // Add this prop
+    verseNumber: string; // Add this prop
 }
 
 const VerseRenderer = ({ arabicText, verseNumber }: VerseRendererProps) => {
@@ -32,7 +32,7 @@ const VerseRenderer = ({ arabicText, verseNumber }: VerseRendererProps) => {
                     position={word.position}
                 />
             ))}
-            <span className="leading-normal arabic-font-1 text-5xl">{toArabicNumerals(verse_number)}</span>
+            <span className="leading-normal arabic-font-1 text-5xl">{toArabicNumerals(verseNumber)}</span>
         </div>
     );
 };
