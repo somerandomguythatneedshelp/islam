@@ -37,7 +37,7 @@
 }
 
 .arabic-verses {
-  font-family: "NotoNastaliq";
+  font-family: "IndoPak" !important;
   font-weight: normal;
   font-style: normal;
   font-display: swap;
@@ -151,4 +151,72 @@ body {
   color: var(--foreground);
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+.arabic-font-1, .arabic-font-2, .arabic-font-3 {
+    font-family: "Uthmani-Hafs";
+}
+
+@font-face {
+    font-family: "Uthmani-Hafs";
+
+    src: url("/fonts/ee/uthmanic_hafs_v22.woff2") format("woff2"),
+    url("/fonts/ee/uthmanic_hafs_v22.woff") format("woff");
+
+    font-weight: normal;
+
+    font-style: normal;
+
+    font-display: swap;
+}
+
+.highlight-transition {
+    transition: background-color 0.2s ease-in-out;
+}
+
+.arabic-verse {
+    line-height: 2.5rem;
+    letter-spacing: -1px;
+}
+
+.quran-word {
+    transition: color 0.2s ease;
+    display: inline-block;
+    margin: 0 2px;
+}
+
+.quran-word:hover {
+    color: #2563eb; /* blue-600 */
+}
+
+.quran-word {
+    display: inline-block;
+    white-space: nowrap;
+    transition: color 0.2s ease;
+    margin: 0 1px;
+    padding: 0 2px;
+    cursor: pointer;
+    unicode-bidi: isolate;
+}
+
+.verse-container {
+    font-size: 2rem;
+    line-height: 3.5rem;
+    direction: rtl;
+    text-align: justify;
+    word-spacing: -0.2em;
+}
+
+.quran-word:hover {
+    color: #2563eb; /* blue-600 */
+}
+
+* {
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+.quran-word {
+    user-select: text;
+    -webkit-user-select: text;
 }

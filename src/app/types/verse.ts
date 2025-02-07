@@ -1,5 +1,5 @@
 export interface Verse {
     id: number;
-    verse_number: string;
+    verse_number: number;
     text_madani: string;
 }
