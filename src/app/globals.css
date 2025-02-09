@@ -14,33 +14,10 @@
   }
 }
 
-@font-face {
-  font-family: 'en';
-  src: url('/public/fonts/lang/urdu/MehrNastaliqWeb.ttf') format('ttf'),
-  url('/public/fonts/lang/urdu/MehrNastaliqWeb.ttf') format('ttf');
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
-
 @layer utilities {
   .font-en {
     font-family: 'en', sans-serif;
   }
-}
-
-.arabic-surahtitle {
-  font-family: "surahnames";
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
-
-.arabic-verses {
-  font-family: "IndoPak" !important;
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
 }
 
 @font-face {
@@ -56,13 +33,25 @@
 @font-face {
   font-family: "surahnames";
   src:
-          url("/fonts/quran/surah-names/v1/sura_names.woff2"),
-          url("/fonts/quran/quran/surah-names/v1/sura_names.woff") format("woff");
+          url("/fonts/quran/surah-names/v1/sura_names.woff2");
   font-weight: normal;
   font-style: normal;
   font-display: swap;
 }
 
+.arabic-surahtitle {
+    font-family: "surahnames";
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+.arabic-verses {
+    font-family: "IndoPak" !important;
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
 
 body {
   color: var(--foreground);
