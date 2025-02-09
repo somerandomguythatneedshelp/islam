@@ -1,37 +1,30 @@
+// src/app/components/Settings/SettingsMenu.tsx
 'use client';
 
-import { useTranslation } from '@/app/context/TranslationContext';
+import { useState, useEffect } from 'react';
 
-const languages = [
-    { code: 131, name: 'English' },
-    { code: 175, name: 'Turkish' },
-    { code: 149, name: 'Urdu' },
-    { code: 145, name: 'Hindi' }
-];
+interface SettingsMenuProps {
+    onLanguageChange: (languageId: number) => void;
+}
 
-const SettingsMenu = () => {
-    const { translationLang, setTranslationLang } = useTranslation();
+const SettingsMenu = ({ onLanguageChange }: SettingsMenuProps) => {
+    const [selectedLanguage, setSelectedLanguage] = useState<number>(131); // Default to English
+
+    const handleLanguageChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+        const languageId = parseInt(event.target.value, 10);
+        setSelectedLanguage(languageId);
+        onLanguageChange(languageId);
+    };
 
     return (
-        <div className="dropdown dropdown-end">
-            <label tabIndex={0} className="btn btn-ghost btn-circle">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                </svg>
-            </label>
-            <ul tabIndex={0} className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
-                {languages.map((lang) => (
-                    <li key={lang.code}>
-                        <button
-                            onClick={() => setTranslationLang(lang.code)}
-                            className={translationLang === lang.code ? 'active' : ''}
-                        >
-                            {lang.name}
-                        </button>
-                    </li>
-                ))}
-            </ul>
+        <div className="settings-menu">
+            <label htmlFor="language-select">Select Language:</label>
+            <select id="language-select" value={selectedLanguage} onChange={handleLanguageChange}>
+                <option value={131}>English</option>
+                <option value={234}>اردو</option>
+                <option value={122}>हिन्दी</option>
+                <option value={210}>Türkçe</option>
+            </select>
         </div>
     );
 };

@@ -54,15 +54,6 @@
 }
 
 @font-face {
-  font-family: "UthmanicHafs";
-  src:
-          local("KFGQPC HAFS Uthmanic Script"),
-          url("/fonts/quran/hafs/uthmanic_hafs/UthmanicHafs1Ver18.woff2") format("woff2"),
-          url("/fonts/quran/hafs/uthmanic_hafs/UthmanicHafs1Ver18.ttf") format("truetype");
-  font-display: swap;
-}
-
-@font-face {
   font-family: "surahnames";
   src:
           url("/fonts/quran/surah-names/v1/sura_names.woff2"),
@@ -72,80 +63,6 @@
   font-display: swap;
 }
 
-/*Language specific fonts*/
-@font-face {
-  font-family: "divehi";
-  src:
-          local("Dhivehi Akuru"),
-          url("/fonts/lang/dhivehi/dhivehi/DhivehiAkuru.woff2"),
-          url("/fonts/lang/dhivehi/dhivehi/DhivehiAkuru.woff") format("woff"),
-          url("/fonts/lang/dhivehi/dhivehi/DhivehiAkuru.otf") format("opentype");
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "NotoNastaliq";
-  src:
-          local("Noto Naskh Arabic"),
-          local("Nafees Regular"),
-          url("/fonts/lang/arabic/NotoNaskhArabic-Regular.woff2"),
-          url("/fonts/lang/arabic/NotoNaskhArabic-Regular.ttf") format("truetype");
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "MehrNastaliq";
-  src:
-          local("Mehr Nastaliq Web"),
-          url("/fonts/lang/urdu/MehrNastaliqWeb.woff2"),
-          url("/fonts/lang/urdu/MehrNastaliqWeb.woff") format("woff"),
-          url("/fonts/lang/urdu/MehrNastaliqWeb.ttf") format("truetype");
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-unicode-range: U+0600-06FF;
-}
-
-@font-face {
-  font-family: "NotoSerifBengali";
-  src: local("Noto Serif Bengali"), url("/fonts/lang/bengali/NotoSerifBengali-Regular.woff2");
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "DroidArabicNaskh";
-  src:
-          local("Droid Arabic Naskh"),
-          url("/fonts/lang/kurdish/droid-naskh-regular.woff2"),
-          url("/fonts/lang/kurdish/droid-naskh-regular.ttf") format("truetype");
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "ProximaVara";
-  src: local("Proxima Vara"), url("/fonts/lang/ProximaVara/ProximaVara.woff2");
-  font-weight: 100 900;
-  /* default 400 */
-  font-stretch: 50% 100%;
-  /* default 100% */
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "PlayfairDisplay";
-  src:
-          local("Playfair Display"),
-          url("/fonts/lang/PlayfairDisplay/PlayfairDisplay-Black.ttf") format("truetype");
-  font-display: swap;
-}
-
-.square-thing {
-  background-color: #465152;
-}
 
 body {
   color: var(--foreground);
@@ -314,4 +231,65 @@ body {
 .quran-footer button:hover {
     border: 1px solid #fff;
     color: #fff;
+}
+
+.settings-icon {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    transition: transform 0.3s ease;
+}
+
+.settings-icon:hover {
+    transform: rotate(90deg);
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 40px;
+    right: 0;
+    background-color: #444;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    z-index: 1000;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.settings-menu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.settings-menu label {
+    margin-bottom: 10px;
+    font-size: 1rem;
+    color: white;
+}
+
+.settings-menu select {
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #444;
+    color: white;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    cursor: pointer;
 }

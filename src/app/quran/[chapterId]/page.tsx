@@ -1,4 +1,3 @@
-// src/app/quran/[chapterId]/page.tsx
 "use client";
 
 import { useParams } from 'next/navigation';
@@ -6,6 +5,7 @@ import { useEffect, useState, useRef, useCallback } from 'react';
 import VerseRenderer from '@/app/components/QuranReader/VerseRenderer';
 import SurahNavbar from '@/app/components/QuranReader/SurahNavbar';
 import { useRouter } from 'next/navigation';
+import SettingsIcon from "@/app/components/Settings/SettingsIcon";
 
 interface Verse {
     id: number;
@@ -22,12 +22,13 @@ export default function ChapterPage() {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
     const [showFooter, setShowFooter] = useState(true);
+    const [languageId, setLanguageId] = useState<number>(131); // Default to English
     const observer = useRef<IntersectionObserver | null>(null);
     const perPage = 20;
 
     const router = useRouter();
 
-    const fetchVerses = useCallback(async (page: number) => {
+    const fetchVerses = useCallback(async (page: number, langId: number) => {
         setLoading(true);
         setError(null);
 
@@ -43,21 +44,21 @@ export default function ChapterPage() {
 
             const newVerses = await Promise.all(data.verses.map(async (verse: any) => {
                 const englishResponse = await fetch(
-                    `https://api.quran.com/api/v4/verses/by_chapter/${chapterId}?page=${page}&per_page=${perPage}&translations=131`
+                    `https://api.quran.com/api/v4/verses/by_chapter/${chapterId}?page=${page}&per_page=${perPage}&translations=${langId}`
                 );
 
-                if (!englishResponse.ok) throw new Error('Failed to fetch English translation');
+                if (!englishResponse.ok) throw new Error('Failed to fetch translation');
 
                 const englishData = await englishResponse.json();
-                console.log('English translation response:', englishData);
+                console.log('Translation response:', englishData);
 
-                const englishTranslation = englishData.verses.find((v: any) => v.verse_number === verse.verse_number)?.translations[0]?.text.replace(/<sup[^>]*>.*?<\/sup>/g, '') || '';
+                const translation = englishData.verses.find((v: any) => v.verse_number === verse.verse_number)?.translations[0]?.text.replace(/<sup[^>]*>.*?<\/sup>/g, '') || '';
 
                 return {
                     id: verse.id,
                     verse_number: verse.verse_number,
                     text_madani: verse.text_madani,
-                    text_english: englishTranslation
+                    text_english: translation
                 };
             }));
 
@@ -86,8 +87,8 @@ export default function ChapterPage() {
     useEffect(() => {
         setVerses([]);
         setCurrentPage(1);
-        fetchVerses(1);
-    }, [chapterId, fetchVerses]);
+        fetchVerses(1, languageId);
+    }, [chapterId, fetchVerses, languageId]);
 
     const lastVerseRef = useCallback((node: HTMLElement | null) => {
         if (loading || !hasMore) return;
@@ -103,8 +104,8 @@ export default function ChapterPage() {
     }, [loading, hasMore]);
 
     useEffect(() => {
-        if (currentPage > 1) fetchVerses(currentPage);
-    }, [currentPage, fetchVerses]);
+        if (currentPage > 1) fetchVerses(currentPage, languageId);
+    }, [currentPage, fetchVerses, languageId]);
 
     const SkeletonVerse = () => (
         <div className="p-4 border rounded-lg shimmer-bg">
@@ -154,9 +155,16 @@ export default function ChapterPage() {
         setShowFooter(false);
     };
 
+    const handleLanguageChange = (languageId: number) => {
+        setLanguageId(languageId);
+    };
+
     return (
         <div className="max-w-4xl mx-auto p-4">
-            <SurahNavbar />
+            <div className="flex justify-between items-center">
+                <SurahNavbar />
+                <SettingsIcon onLanguageChange={handleLanguageChange} />
+            </div>
             <h1 className="arabic-surahtitle text-5xl font-bold text-center mb-8 mt-5">
                 {chapterId.toString().padStart(3, '0')} surah
             </h1>
