@@ -1,12 +1,12 @@
 {
-  "name": "Islam",
-  "short_name": "Islam",
+  "name": "Islamical",
+  "short_name": "Islamical",
   "theme_color": "#FFFFFF",
   "icons": [
     {
-      "src": "\/android-icon-36x36.png",
-      "sizes": "36x36",
-      "type": "image\/png",
+      "src": "\/favicon\/ico",
+      "sizes": "16x16",
+      "type": "favicon\/ico",
       "density": "0.75"
     }],
   "background_color": "#FFFFFF",
@@ -14,5 +14,5 @@
   "display": "standalone",
   "orientation": "portrait",
   "categories": ["books", "education"],
-  "description": "Islam Is the website to check Ramadan Timings and Read the Holy Q'uran"
+  "description": "Islamical Is the website to check Ramadan Timings, Read the Holy Q'uran and look at authentic Hadith's of Prophet Muhammad (PBUH)."
 }

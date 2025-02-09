@@ -16,7 +16,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Islam",
+  title: "Islamical",
   description: "Islam Is the website to check Ramadan Timings and Read the Holy Q'uran",
 };
 
@@ -28,7 +28,8 @@ export default function RootLayout({
   return (
     <html lang="en">
     <head>
-        <meta name="apple-mobile-web-app-capable" content="yes"/>
+      <meta name="apple-mobile-web-app-capable" content="yes"/>
+      <link rel="apple-touch-icon" href="/apple-touch-icon.png"/>
     </head>
     <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
