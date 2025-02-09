@@ -32,13 +32,23 @@ export default function Home() {
                     text="Salah Timings"
                 />
             </Link>
+
+            <h1 className="pt-6 pb-8">‎</h1>
+
+            <Link href="/hadith">
+                <Box
+                    imageSource="/images/hadith.png"
+                    imageAlt="Image description"
+                    text="Hadtih"
+                />
+            </Link>
         </div>
     );
 
     return (
         <main className="flex min-h-screen flex-col items-center justify-between p-24">
             <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-                <HomeGrid />
+                <HomeGrid/>
             </div>
         </main>
     );
