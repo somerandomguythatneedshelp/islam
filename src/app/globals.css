@@ -236,42 +236,11 @@ body {
     word-spacing: 0.001em;
 }
 
-.quran-footer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 30px 0;
-    position: sticky;
-    bottom: 0;
-    background-color: rgb(31, 30, 30);
-    z-index: 1;
-}
-
-.quran-footer button {
-    background-color: transparent;
-    color: #4e4e4e;
-    border: 1px solid #4e4e4e;
-    padding: 15px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    font-size: 16px;
-    margin: 0 10px;
-    z-index: 2;
-}
-
-.quran-footer button:hover {
-    border: 1px solid #fff;
-    color: #fff;
-}
-
-/* src/app/globals.css */
 .surah-navbar {
     display: flex;
     justify-content: center;
     margin-bottom: 20px;
     padding: 10px;
-    background-color: #333;
     border-radius: 5px;
     transition: top 0.3s;
     position: sticky;
@@ -306,6 +275,27 @@ body {
     max-width: 300px;
 }
 
+.quran-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 0;
+    position: sticky;
+    bottom: 0;
+    background-color: rgb(31, 30, 30);
+    z-index: 1;
+    width: 100%;
+    transition: bottom 0.3s;
+}
+
+.quran-footer.hidden {
+    bottom: -100px;
+}
+
+.quran-footer.visible {
+    bottom: 0;
+}
+
 .quran-footer button {
     background-color: transparent;
     color: #4e4e4e;
@@ -324,16 +314,4 @@ body {
 .quran-footer button:hover {
     border: 1px solid #fff;
     color: #fff;
-}
-
-.quran-footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 30px 0;
-    position: sticky;
-    bottom: 0;
-    background-color: rgb(31, 30, 30);
-    z-index: 1;
-    width: 100%;
 }

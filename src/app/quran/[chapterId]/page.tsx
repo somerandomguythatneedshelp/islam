@@ -21,6 +21,7 @@ export default function ChapterPage() {
     const [hasMore, setHasMore] = useState(true);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
+    const [showFooter, setShowFooter] = useState(true);
     const observer = useRef<IntersectionObserver | null>(null);
     const perPage = 20;
 
@@ -133,10 +134,30 @@ export default function ChapterPage() {
         bisSurah1 = false;
     }
 
+    useEffect(() => {
+        let lastScrollTop = 0;
+        const handleScroll = () => {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            if (scrollTop > lastScrollTop + 50) {
+                setShowFooter(false);
+            } else if (scrollTop < lastScrollTop - 50) {
+                setShowFooter(true);
+            }
+            lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+        };
+
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
+
+    const handleSwipeDown = () => {
+        setShowFooter(false);
+    };
+
     return (
         <div className="max-w-4xl mx-auto p-4">
             <SurahNavbar />
-            <h1 className="arabic-surahtitle text-5xl font-bold text-center mb-8">
+            <h1 className="arabic-surahtitle text-5xl font-bold text-center mb-8 mt-5">
                 {chapterId.toString().padStart(3, '0')} surah
             </h1>
 
@@ -168,10 +189,10 @@ export default function ChapterPage() {
                 <div className="text-center p-4 text-red-500">{error}</div>
             )}
 
-            <div className="quran-footer">
+            <div className={`quran-footer ${showFooter ? 'visible' : 'hidden'}`} onTouchStart={handleSwipeDown}>
                 {!bisSurah1 && (
                     <button onClick={handlePreviousSurah}>
-                        <span style={{ display: 'inline-flex', alignItems: 'center', verticalAlign: 'middle' }}>
+                        <span className="text-xs" style={{ display: 'inline-flex', alignItems: 'center', verticalAlign: 'middle' }}>
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 width="16"
@@ -192,7 +213,7 @@ export default function ChapterPage() {
 
                 {!bisSurah114 && (
                     <button onClick={handleNextSurah}>
-                        <span style={{ display: 'inline-flex', alignItems: 'center', verticalAlign: 'middle' }}>
+                        <span className="text-xs" style={{ display: 'inline-flex', alignItems: 'center', verticalAlign: 'middle' }}>
                             Next Surah
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"

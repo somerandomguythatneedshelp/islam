@@ -9,6 +9,7 @@ const SurahNavbar = () => {
     const [surahs, setSurahs] = useState<Surah[]>([]);
     const [loading, setLoading] = useState(true);
     const [selectedSurahId, setSelectedSurahId] = useState<string>('');
+    const [showNavbar, setShowNavbar] = useState(true);
     const router = useRouter();
     const pathname = usePathname();
 
@@ -39,12 +40,32 @@ const SurahNavbar = () => {
         router.push(`/quran/${selectedSurahId}`);
     };
 
+    useEffect(() => {
+        let lastScrollTop = 0;
+        const handleScroll = () => {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            if (scrollTop > lastScrollTop + 50) {
+                setShowNavbar(false);
+            } else if (scrollTop < lastScrollTop - 50) {
+                setShowNavbar(true);
+            }
+            lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+        };
+
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
+
+    const handleSwipeUp = () => {
+        setShowNavbar(false);
+    };
+
     if (loading) {
         return <div>Loading...</div>;
     }
 
     return (
-        <div className="surah-navbar">
+        <div className={`surah-navbar ${showNavbar ? 'visible' : 'hidden'}`} onTouchStart={handleSwipeUp}>
             <select value={selectedSurahId} onChange={handleSurahChange} className="surah-select">
                 {surahs.map((surah) => (
                     <option key={surah.id} value={surah.id}>
