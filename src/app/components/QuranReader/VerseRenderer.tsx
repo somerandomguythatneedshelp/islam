@@ -7,35 +7,32 @@ import { toArabicNumerals } from '@/app/types/ArabicNumbers';
 
 interface VerseRendererProps {
     arabicText: string;
-    verseNumber: string; // Add this prop
+    verseNumber: string;
+    englishText?: string;
 }
 
-const VerseRenderer = ({ arabicText, verseNumber }: VerseRendererProps) => {
+const VerseRenderer = ({ arabicText, verseNumber, englishText }: VerseRendererProps) => {
     const words = processVerseText(arabicText);
 
+    console.log('Rendering verse:', { arabicText, verseNumber, englishText });
+
     return (
-        <div
-            className="verse-container"
-            style={{
-                fontFamily: "'Amiri Quran', 'Lateef', 'Noto Naskh Arabic', serif",
-                fontSize: '2rem',
-                lineHeight: '3.5rem',
-                direction: 'rtl',
-                textAlign: 'justify',
-                wordSpacing: '-0.3em',
-            }}
-        >
-            {words.map((word) => (
-                <QuranWord
-                    key={word.id}
-                    word={word.text}
-                    position={word.position}
-                />
-            ))}
-            <span className="leading-normal arabic-font-1 text-5xl">{toArabicNumerals(verseNumber)}</span>
+        <div className="verse-container">
+            <div style={{fontFamily: "'Uthmanic-Hafs', serif"}}>
+                {words.map((word, index) => (
+                    <QuranWord
+                        key={index} // why?
+                        word={word.text}
+                    />
+                ))}
+                <span className="leading-normal arabic-font-1 text-5xl">{toArabicNumerals(verseNumber)}</span>
+            </div>
+            {englishText && (
+                <div className="translation-text">
+                {englishText}
+                </div>
+            )}
         </div>
-
-
     );
 };
 

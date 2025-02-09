@@ -1,11 +1,10 @@
-// src/components/Quran/QuranWord.tsx
+// src/components/QuranReader/QuranWord.tsx
 'use client';
 
 import { useState } from 'react';
 
 interface QuranWordProps {
     word: string;
-    position: number;
 }
 
 const QuranWord = ({ word }: QuranWordProps) => {
