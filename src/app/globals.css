@@ -265,6 +265,7 @@ body {
     color: #fff;
 }
 
+/* src/app/globals.css */
 .surah-navbar {
     display: flex;
     justify-content: center;
@@ -272,6 +273,18 @@ body {
     padding: 10px;
     background-color: #333;
     border-radius: 5px;
+    transition: top 0.3s;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.surah-navbar.hidden {
+    top: -100px;
+}
+
+.surah-navbar.visible {
+    top: 0;
 }
 
 .surah-select {
@@ -293,13 +306,34 @@ body {
     max-width: 300px;
 }
 
-@media (max-width: 600px) {
-    .surah-navbar {
-        padding: 5px;
-    }
+.quran-footer button {
+    background-color: transparent;
+    color: #4e4e4e;
+    border: 1px solid #4e4e4e;
+    padding: 15px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 16px;
+    margin: 0 10px;
+    z-index: 2;
+    width: 100%;
+    max-width: 300px;
+}
 
-    .surah-select {
-        font-size: 0.875rem;
-        padding: 8px;
-    }
+.quran-footer button:hover {
+    border: 1px solid #fff;
+    color: #fff;
+}
+
+.quran-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 0;
+    position: sticky;
+    bottom: 0;
+    background-color: rgb(31, 30, 30);
+    z-index: 1;
+    width: 100%;
 }
