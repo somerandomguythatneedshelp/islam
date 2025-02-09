@@ -18,7 +18,6 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Islam",
   description: "Islam Is the website to check Ramadan Timings and Read the Holy Q'uran",
-    "apple-mobile-web-app-capable": "yes",
 };
 
 export default function RootLayout({
@@ -28,7 +27,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
+    <head>
+        <meta name="apple-mobile-web-app-capable" content="yes"/>
+    </head>
+    <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
       <TranslationProvider>
