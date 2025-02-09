@@ -40,7 +40,7 @@
 }
 
 .arabic-surahtitle {
-    font-family: "surahnames";
+    font-family: "surahnames" !important;
     font-weight: normal;
     font-style: normal;
     font-display: swap;
