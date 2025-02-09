@@ -84,14 +84,13 @@ export default function HadithPage() {
                     <span className="ml-2 text-white">Al-Tirmidhi</span>
                 </label>
             </div>
-            <div className="mt-8">
+            <div className="mb-56 ml-24 mr-24">
                 {loading && <div>Loading...</div>}
                 {error && <div>Error: {error}</div>}
                 {hadithData && (
                     <div className="p-4 border rounded-lg">
                         <p>{hadithData.data.id}</p>
                         <p className="text-lg">{hadithData.data.hadith_english}</p>
-                        {console.log(hadithData.data.hadith_english)}
                         <p className="text-sm text-gray-500">{hadithData.reference}</p>
                     </div>
                 )}
