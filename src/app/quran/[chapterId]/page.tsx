@@ -1,3 +1,4 @@
+// src/app/quran/[chapterId]/page.tsx
 "use client";
 
 import { useParams } from 'next/navigation';
@@ -23,6 +24,7 @@ export default function ChapterPage() {
     const [error, setError] = useState<string | null>(null);
     const [showFooter, setShowFooter] = useState(true);
     const [languageId, setLanguageId] = useState<number>(131); // Default to English
+    const [language, setLanguage] = useState<string>('english');
     const observer = useRef<IntersectionObserver | null>(null);
     const perPage = 20;
 
@@ -33,26 +35,19 @@ export default function ChapterPage() {
         setError(null);
 
         try {
-            const response = await fetch(
-                `https://api.quran.com/api/v3/chapters/${chapterId}/verses?page=${page}&per_page=${perPage}`
-            );
+            const [arabicResponse, translationResponse] = await Promise.all([
+                fetch(`https://api.quran.com/api/v3/chapters/${chapterId}/verses?page=${page}&per_page=${perPage}`),
+                fetch(`https://api.quran.com/api/v4/verses/by_chapter/${chapterId}?page=${page}&per_page=${perPage}&translations=${langId}`)
+            ]);
 
-            if (!response.ok) throw new Error('Failed to fetch verses');
+            if (!arabicResponse.ok) throw new Error('Failed to fetch Arabic verses');
+            if (!translationResponse.ok) throw new Error('Failed to fetch translation');
 
-            const data = await response.json();
-            console.log('Arabic verses response:', data);
+            const arabicData = await arabicResponse.json();
+            const translationData = await translationResponse.json();
 
-            const newVerses = await Promise.all(data.verses.map(async (verse: any) => {
-                const englishResponse = await fetch(
-                    `https://api.quran.com/api/v4/verses/by_chapter/${chapterId}?page=${page}&per_page=${perPage}&translations=${langId}`
-                );
-
-                if (!englishResponse.ok) throw new Error('Failed to fetch translation');
-
-                const englishData = await englishResponse.json();
-                console.log('Translation response:', englishData);
-
-                const translation = englishData.verses.find((v: any) => v.verse_number === verse.verse_number)?.translations[0]?.text.replace(/<sup[^>]*>.*?<\/sup>/g, '') || '';
+            const newVerses = arabicData.verses.map((verse: any) => {
+                const translation = translationData.verses.find((v: any) => v.verse_number === verse.verse_number)?.translations[0]?.text.replace(/<sup[^>]*>.*?<\/sup>/g, '') || '';
 
                 return {
                     id: verse.id,
@@ -60,9 +55,7 @@ export default function ChapterPage() {
                     text_madani: verse.text_madani,
                     text_english: translation
                 };
-            }));
-
-            console.log('Fetched verses:', newVerses);
+            });
 
             setVerses(prev => {
                 const updatedVerses = [
@@ -71,11 +64,10 @@ export default function ChapterPage() {
                         !prev.some(prevVerse => prevVerse.id === newVerse.id)
                     )
                 ];
-                console.log('Updated verses:', updatedVerses);
                 return updatedVerses;
             });
 
-            setHasMore(data.verses.length === perPage);
+            setHasMore(arabicData.verses.length === perPage);
 
         } catch (err) {
             setError(err instanceof Error ? err.message : 'Failed to fetch verses');
@@ -155,12 +147,13 @@ export default function ChapterPage() {
         setShowFooter(false);
     };
 
-    const handleLanguageChange = (languageId: number) => {
+    const handleLanguageChange = (languageId: number, language: string) => {
         setLanguageId(languageId);
+        setLanguage(language);
     };
 
     return (
-        <div className="max-w-4xl mx-auto p-4">
+        <div className={`max-w-4xl mx-auto p-4 ${language}`}>
             <div className="flex justify-between items-center">
                 <SurahNavbar />
                 <SettingsIcon onLanguageChange={handleLanguageChange} />
@@ -178,7 +171,7 @@ export default function ChapterPage() {
                     >
                         <VerseRenderer
                             arabicText={verse.text_madani}
-                            verseNumber={verse.verse_number}
+                            verseNumber={verse.verse_number.toString()}
                             englishText={verse.text_english}
                         />
                     </div>

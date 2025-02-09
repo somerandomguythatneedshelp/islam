@@ -40,6 +40,36 @@
   font-display: swap;
 }
 
+@font-face {
+    font-family: "NotoSans";
+    src: url("/fonts/lang/eng/NotoSans-Regular.ttf") format("truetype");
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Hind";
+    src: url("/fonts/lang/hindi/Hind-Regular.tff") format("truetype");
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "NotoNastaliq";
+    src: url("/fonts/lang/urdu/NotoNastaliqUrdu-Regular.tff") format("truetype");
+    font-display: swap;
+}
+
+.english, .turkish {
+    font-family: "NotoSans", sans-serif;
+}
+
+.hindi {
+    font-family: "Hind", sans-serif;
+}
+
+.urdu {
+    font-family: "NotoNastaliq", sans-serif;
+}
+
 .arabic-surahtitle {
     font-family: "surahnames";
     font-weight: normal;
