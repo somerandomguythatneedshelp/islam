@@ -1,17 +1,10 @@
 // src/app/page.tsx
 "use client";
 
-import { useState } from 'react';
-import SettingsIcon from './components/Settings/SettingsIcon';
 import Link from "next/link";
 import Box from "@/app/components/Home/Box";
 
 export default function Home() {
-    const [languageId, setLanguageId] = useState<number>(131); // Default to English
-
-    const handleLanguageChange = (languageId: number) => {
-        setLanguageId(languageId);
-    };
 
     const HomeGrid = () => (
         <div className="container mx-auto">
