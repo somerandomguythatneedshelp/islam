@@ -5,10 +5,20 @@ import { useState } from 'react';
 
 interface QuranWordProps {
     word: string;
+    audioUrl: string; // Directly pass the audio URL
 }
 
-const QuranWord = ({ word }: QuranWordProps) => {
+const QuranWord = ({ word, audioUrl }: QuranWordProps) => {
     const [isHovered, setIsHovered] = useState(false);
+
+    const playAudio = () => {
+        if (audioUrl) {
+            const audio = new Audio(audioUrl);
+            audio.play();
+        } else {
+            console.error('Audio URL is not available for this word.');
+        }
+    };
 
     return (
         <span
@@ -23,21 +33,22 @@ const QuranWord = ({ word }: QuranWordProps) => {
                 margin: '0 1px',
                 padding: '0 2px',
                 lineHeight: '1.8',
-                direction: 'rtl'
+                direction: 'rtl',
             }}
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
+            onClick={playAudio} // Play audio on click
         >
-      <span
-          style={{
-              display: 'inline-block',
-              whiteSpace: 'nowrap',
-              position: 'relative',
-              zIndex: 1,
-          }}
-      >
-        {word}
-      </span>
+            <span
+                style={{
+                    display: 'inline-block',
+                    whiteSpace: 'nowrap',
+                    position: 'relative',
+                    zIndex: 1,
+                }}
+            >
+                {word}
+            </span>
             {/* Background overlay for precise hover area */}
             <span
                 style={{
@@ -47,10 +58,10 @@ const QuranWord = ({ word }: QuranWordProps) => {
                     left: '-3px',
                     right: '-3px',
                     zIndex: 0,
-                    pointerEvents: 'none'
+                    pointerEvents: 'none',
                 }}
             />
-    </span>
+        </span>
     );
 };
 

@@ -1,9 +1,9 @@
 // src/app/components/QuranReader/SurahNavbar.tsx
 'use client';
 
-import { useRouter, usePathname } from 'next/navigation';
-import { useEffect, useState } from 'react';
-import type { Surah } from '@/app/types/surah';
+import {useRouter, usePathname} from 'next/navigation';
+import {useEffect, useState} from 'react';
+import type {Surah} from '@/app/types/surah';
 
 const SurahNavbar = () => {
     const [surahs, setSurahs] = useState<Surah[]>([]);
