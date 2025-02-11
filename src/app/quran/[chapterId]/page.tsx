@@ -42,9 +42,11 @@ export default function ChapterPage() {
           id: verse.id,
           verse_number: verse.verse_number,
           text_madani: verse.text_madani,
-          text_english: translation
+          text_english: translation,
         };
       });
+
+
 
       setVerses(prev => {
         const updatedVerses = [

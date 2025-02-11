@@ -6,10 +6,12 @@ import { useState } from 'react';
 interface QuranWordProps {
     word: string;
     audioUrl: string; // Directly pass the audio URL
+    translation: string;
 }
 
 const QuranWord = ({ word, audioUrl }: QuranWordProps) => {
     const [isHovered, setIsHovered] = useState(false);
+    const [hoveredWord, setHoveredWord] = useState<number | null>(null);
 
     const playAudio = () => {
         if (audioUrl) {
@@ -48,6 +50,11 @@ const QuranWord = ({ word, audioUrl }: QuranWordProps) => {
                 }}
             >
                 {word}
+                {hoveredWord === word.id && (
+                    <div className="tooltip">
+                      {word.transliteration.text}
+                    </div>
+                  )}
             </span>
             {/* Background overlay for precise hover area */}
             <span
