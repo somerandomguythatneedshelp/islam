@@ -49,7 +49,7 @@ const VerseRenderer = ({
 
                 <div className="flex-1">
                     {/* Arabic text aligned right */}
-                    <div className="verse-container ml-36" style={{fontFamily: "'IndoPak', serif"}}>
+                    <div className="verse-container" style={{fontFamily: "'IndoPak', serif"}}>
                         {words.map((word, index) => {
                             const audioUrl = `https://audio.qurancdn.com/wbw/${chapterId.toString().padStart(3, '0')}_${verseNumber.padStart(3, '0')}_${(index + 1).toString().padStart(3, '0')}.mp3`;
                             return (
