@@ -60,7 +60,7 @@ const VerseRenderer = ({
                                 />
                             );
                         })}
-                        <span className="leading-normal arabic-font-1 text-5xl">
+                        <span className="leading-normal arabic-font-1 text-5xl text-white">
                             {toArabicNumerals(verseNumber)}
                         </span>
                     </div>

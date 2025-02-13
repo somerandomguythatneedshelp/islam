@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from 'react';
+import {useState} from 'react';
 
 export default function HadithPage() {
     const [hadithName, setHadithName] = useState<string>('');
@@ -40,7 +40,8 @@ export default function HadithPage() {
                         type="radio"
                         onClick={() => handleButtonClick('bukhari')}
                     />
-                    <div className="w-6 h-6 bg-transparent border-2 border-b-white rounded-full peer-checked:bg-white peer-checked:border-white peer-hover:shadow-lg peer-hover:shadow-cyan-50/50 peer-checked:shadow-lg peer-checked:shadow-cyan-50/50 transition duration-300 ease-in-out"></div>
+                    <div
+                        className="w-6 h-6 bg-transparent border-2 border-b-white rounded-full peer-checked:bg-white peer-checked:border-white peer-hover:shadow-lg peer-hover:shadow-cyan-50/50 peer-checked:shadow-lg peer-checked:shadow-cyan-50/50 transition duration-300 ease-in-out"></div>
                     <span className="ml-2 text-white">Sahih Al-Bukhari</span>
                 </label>
                 <label className="relative flex items-center cursor-pointer">
@@ -50,7 +51,8 @@ export default function HadithPage() {
                         type="radio"
                         onClick={() => handleButtonClick('muslim')}
                     />
-                    <div className="w-6 h-6 bg-transparent border-2 border-b-white rounded-full peer-checked:bg-white peer-checked:border-white peer-hover:shadow-lg peer-hover:shadow-cyan-50/50 peer-checked:shadow-lg peer-checked:shadow-cyan-50/50 transition duration-300 ease-in-out"></div>
+                    <div
+                        className="w-6 h-6 bg-transparent border-2 border-b-white rounded-full peer-checked:bg-white peer-checked:border-white peer-hover:shadow-lg peer-hover:shadow-cyan-50/50 peer-checked:shadow-lg peer-checked:shadow-cyan-50/50 transition duration-300 ease-in-out"></div>
                     <span className="ml-2 text-white">Sahih Muslim</span>
                 </label>
                 <label className="relative flex items-center cursor-pointer">
@@ -60,7 +62,8 @@ export default function HadithPage() {
                         type="radio"
                         onClick={() => handleButtonClick('abudawud')}
                     />
-                    <div className="w-6 h-6 bg-transparent border-2 border-b-white rounded-full peer-checked:bg-white peer-checked:border-white peer-hover:shadow-lg peer-hover:shadow-cyan-50/50 peer-checked:shadow-lg peer-checked:shadow-cyan-50/50 transition duration-300 ease-in-out"></div>
+                    <div
+                        className="w-6 h-6 bg-transparent border-2 border-b-white rounded-full peer-checked:bg-white peer-checked:border-white peer-hover:shadow-lg peer-hover:shadow-cyan-50/50 peer-checked:shadow-lg peer-checked:shadow-cyan-50/50 transition duration-300 ease-in-out"></div>
                     <span className="ml-2 text-white">Abu Dawud</span>
                 </label>
                 <label className="relative flex items-center cursor-pointer">
@@ -70,7 +73,8 @@ export default function HadithPage() {
                         type="radio"
                         onClick={() => handleButtonClick('ibnmajah')}
                     />
-                    <div className="w-6 h-6 bg-transparent border-2 border-b-white rounded-full peer-checked:bg-white peer-checked:border-white peer-hover:shadow-lg peer-hover:shadow-cyan-50/50 peer-checked:shadow-lg peer-checked:shadow-cyan-50/50 transition duration-300 ease-in-out"></div>
+                    <div
+                        className="w-6 h-6 bg-transparent border-2 border-b-white rounded-full peer-checked:bg-white peer-checked:border-white peer-hover:shadow-lg peer-hover:shadow-cyan-50/50 peer-checked:shadow-lg peer-checked:shadow-cyan-50/50 transition duration-300 ease-in-out"></div>
                     <span className="ml-2 text-white">Ibn Majah</span>
                 </label>
                 <label className="relative flex items-center cursor-pointer">
@@ -80,7 +84,8 @@ export default function HadithPage() {
                         type="radio"
                         onClick={() => handleButtonClick('tirmidhi')}
                     />
-                    <div className="w-6 h-6 bg-transparent border-2 border-b-white rounded-full peer-checked:bg-white peer-checked:border-white peer-hover:shadow-lg peer-hover:shadow-cyan-50/50 peer-checked:shadow-lg peer-checked:shadow-cyan-50/50 transition duration-300 ease-in-out"></div>
+                    <div
+                        className="w-6 h-6 bg-transparent border-2 border-b-white rounded-full peer-checked:bg-white peer-checked:border-white peer-hover:shadow-lg peer-hover:shadow-cyan-50/50 peer-checked:shadow-lg peer-checked:shadow-cyan-50/50 transition duration-300 ease-in-out"></div>
                     <span className="ml-2 text-white">Al-Tirmidhi</span>
                 </label>
             </div>
@@ -90,8 +95,8 @@ export default function HadithPage() {
                 {hadithData && (
                     <div className="p-4 border rounded-lg mb-64">
                         <p>{hadithData.data.id}</p>
-                        <p className="text-lg">{hadithData.data.hadith_english}</p>
-                        <p className="text-sm text-gray-500">{hadithData.reference}</p>
+                        <p className="text-lg text-white">{hadithData.data.hadith_english}</p>
+                        <p className="text-sm text-gray-500 text-white">{hadithData.reference}</p>
                     </div>
                 )}
             </div>
