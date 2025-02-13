@@ -21,15 +21,6 @@
 }
 
 @font-face {
-    font-family: "IndoPak";
-    src: local("AlQuran IndoPak by QuranWBW"),
-        url("/fonts/quran/hafs/nastaleeq/indopak/indopak-nastaleeq-waqf-lazim-v4.2.1.woff2") format("woff2"),
-        url("/fonts/quran/hafs/nastaleeq/indopak/indopak-nastaleeq-waqf-lazim-v4.2.1.woff") format("woff"),
-        url("/fonts/quran/hafs/nastaleeq/indopak/indopak-nastaleeq-waqf-lazim-v4.2.1.ttf") format("truetype");
-    font-display: swap;
-}
-
-@font-face {
     font-family: "surahnames";
     src: url("/fonts/quran/surah-names/v1/sura_names.woff2"),
         url("/fonts/quran/quran/surah-names/v1/sura_names.woff") format("woff");
@@ -75,8 +66,17 @@
     font-display: swap;
 }
 
+@font-face {
+    font-family: "IndoPakTest";
+    src: local("AlQuran IndoPak by QuranWBW"),
+        url("/fonts/quran/hafs/nastaleeq/indopak/indopak-nastaleeq-waqf-lazim-v4.2.1.woff2") format("woff2"),
+        url("/fonts/quran/hafs/nastaleeq/indopak/indopak-nastaleeq-waqf-lazim-v4.2.1.woff") format("woff"),
+        url("/fonts/quran/hafs/nastaleeq/indopak/indopak-nastaleeq-waqf-lazim-v4.2.1.ttf") format("truetype");
+    font-display: swap;
+}
+
 .arabic-verses {
-    font-family: "IndoPak" !important;
+    font-family: "IndoPakTest" !important;
     line-height: 2.5rem;
     letter-spacing: -1px;
 }
@@ -134,7 +134,7 @@ body {
     line-height: 3.5rem;
     direction: rtl;
     text-align: justify;
-    word-spacing: -0.2em;
+    word-spacing: 0.2em;
 }
 
 .quran-word:hover {
@@ -153,12 +153,11 @@ body {
 
 .translation-text {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    font-size: 1rem;
+    font-size: 20px;
     color: #ffffff;
     line-height: 1.6;
     margin-top: 1rem;
     padding-top: 1rem;
-    border-top: 1px solid #eee;
     direction: ltr;
     text-align: left;
     word-wrap: break-word;

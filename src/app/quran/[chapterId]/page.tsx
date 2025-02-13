@@ -16,7 +16,47 @@ export default function ChapterPage() {
   const [error, setError] = useState<string | null>(null);
   const [languageId, setLanguageId] = useState<number>(131); // Default to English
   const observer = useRef<IntersectionObserver | null>(null);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+  const [currentPlayingVerse, setCurrentPlayingVerse] = useState<string | null>(null);
+  const [isPlaying, setIsPlaying] = useState(false);
   const perPage = 20;
+
+  const handlePlayAyah = useCallback((chapterId: string, verseNumber: string) => {
+    const verseKey = `${chapterId}-${verseNumber}`;
+
+    if (currentPlayingVerse === verseKey) {
+      if (audioRef.current) {
+        if (isPlaying) {
+          audioRef.current.pause();
+        } else {
+          audioRef.current.play();
+        }
+      }
+      return;
+    }
+
+    if (audioRef.current) {
+      audioRef.current.pause();
+    }
+
+    // Using Al-Quran Cloud API for verse-level audio
+    const verseAudioUrl = `https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/${verseNumber}`;
+    const newAudio = new Audio(verseAudioUrl);
+    audioRef.current = newAudio;
+
+    newAudio.addEventListener('play', () => {
+      setCurrentPlayingVerse(verseKey);
+      setIsPlaying(true);
+    });
+
+    newAudio.addEventListener('pause', () => setIsPlaying(false));
+    newAudio.addEventListener('ended', () => {
+      setCurrentPlayingVerse(null);
+      setIsPlaying(false);
+    });
+
+    newAudio.play();
+  }, [currentPlayingVerse, isPlaying]);
 
   const fetchVerses = useCallback(async (page: number, langId: number) => {
     if (!chapterId) return; // Wait until chapterId is available
@@ -47,7 +87,6 @@ export default function ChapterPage() {
       });
 
 
-
       setVerses(prev => {
         const updatedVerses = [
           ...prev,
@@ -66,6 +105,15 @@ export default function ChapterPage() {
       setLoading(false);
     }
   }, [chapterId]);
+
+  useEffect(() => {
+    return () => {
+      if (audioRef.current) {
+        audioRef.current.pause();
+        audioRef.current = null;
+      }
+    };
+  }, []);
 
   useEffect(() => {
     if (!chapterId) return; // Wait until chapterId is available
@@ -118,13 +166,16 @@ export default function ChapterPage() {
           <div
             key={verse.id}
             ref={index === verses.length - 1 ? lastVerseRef : null}
-            className="p-4 border rounded-lg"
+            className="p-4 rounded-lg"
           >
             <VerseRenderer
               arabicText={verse.text_madani}
               verseNumber={verse.verse_number.toString()}
               chapterId={chapterId}
               englishText={verse.text_english}
+              chapterId={Number(chapterId)}
+              isPlaying={currentPlayingVerse === `${chapterId}-${verse.verse_number}` && isPlaying}
+              onPlayClick={() => handlePlayAyah(chapterId, verse.verse_number.toString())}
             />
           </div>
         ))}
