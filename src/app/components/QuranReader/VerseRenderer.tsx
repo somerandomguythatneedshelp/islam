@@ -67,7 +67,7 @@ const VerseRenderer = ({
 
                     {/* English text aligned left */}
                     {englishText && (
-                        <div className="translation-text mt-2 text-gray-600 -ml-36">
+                        <div className="translation-text mt-2 text-gray-600 -ml-10">
                             {englishText}
                         </div>
                     )}
