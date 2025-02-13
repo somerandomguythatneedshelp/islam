@@ -136,10 +136,25 @@ const isSameDate = (date1: Date, date2: Date): boolean => {
 
 // Helper function to format a Date object as "DD/MM/YYYY"
 const formatDate = (date: Date): string => {
-    const day = String(date.getDate()).padStart(2, "0");
-    const month = String(date.getMonth() + 1).padStart(2, "0");
-    const year = date.getFullYear();
-    return `${day}/${month}/${year}`;
+    const day = date.getDate();
+    const month = date.toLocaleString("default", {month: "long"}); // Get full month name
+    const suffix = getDaySuffix(day); // Get the suffix for the day (e.g., "st", "nd", "rd", "th")
+    return `${month} ${day}${suffix}`;
+};
+
+// Helper function to determine the suffix for a day (e.g., "st", "nd", "rd", "th")
+const getDaySuffix = (day: number): string => {
+    if (day >= 11 && day <= 13) return "th"; // Special case for 11, 12, 13
+    switch (day % 10) {
+        case 1:
+            return "st";
+        case 2:
+            return "nd";
+        case 3:
+            return "rd";
+        default:
+            return "th";
+    }
 };
 
 // Helper function to convert time (HH:mm) to minutes
