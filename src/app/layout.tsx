@@ -1,9 +1,9 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import { Analytics } from "@vercel/analytics/react"
-import { SpeedInsights } from "@vercel/speed-insights/next"
+import type {Metadata} from "next";
+import {Geist, Geist_Mono} from "next/font/google";
+import {Analytics} from "@vercel/analytics/react"
+import {SpeedInsights} from "@vercel/speed-insights/next"
 import "./globals.css";
-import { TranslationProvider } from '@/app/context/TranslationContext';
+import {TranslationProvider} from '@/app/context/TranslationContext';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -21,8 +21,8 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({
-  children,
-}: Readonly<{
+                                     children,
+                                   }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
@@ -32,14 +32,14 @@ export default function RootLayout({
       <link rel="apple-touch-icon" href="/apple-touch-icon.png"/>
     </head>
     <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-      <TranslationProvider>
-        {children}
-      </TranslationProvider>
-        <Analytics/>
-        <SpeedInsights/>
-      </body>
+      className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+    >
+    <TranslationProvider>
+      {children}
+      <Analytics/>
+      <SpeedInsights/>
+    </TranslationProvider>
+    </body>
     </html>
   );
 }
