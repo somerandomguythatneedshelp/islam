@@ -34,7 +34,7 @@ const SehriIftarPage = () => {
     return (
         <div
             className="sehri-iftar-page bg-[#212628] text-white min-h-screen flex flex-col items-center justify-center px-4">
-            <h1 className="text-4xl font-bold mb-8 text-center">Sehri and Iftar Times</h1>
+            <h1 className="text-4xl font-bold mb-8 text-center"></h1>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 w-full max-w-4xl">
                 {/* Sehri Card */}
                 <div
@@ -50,7 +50,7 @@ const SehriIftarPage = () => {
                     <div className="absolute inset-0 bg-black bg-opacity-50"></div>
                     {/* Content */}
                     <div className="relative z-10 p-6">
-                        <h2 className="text-3xl font-bold mb-4">Sehri</h2>
+                        <h2 className="text-3xl font-bold mb-4">Suhoor</h2>
                         <p className="text-lg">
                             <span className="font-medium">Date:</span> {currentTimings.date}
                         </p>
