@@ -2,10 +2,17 @@
 
 import {useParams} from 'next/navigation';
 import {useState, useEffect, useCallback, useRef} from 'react';
-import VerseRenderer from '@/app/components/QuranReader/VerseRenderer'; // Adjust the path if needed
-import SurahNavbar from '@/app/components/QuranReader/SurahNavbar'; // Adjust the path if needed
+import Cookies from 'js-cookie';
+import VerseRenderer from '@/app/components/QuranReader/VerseRenderer';
+import SurahNavbar from '@/app/components/QuranReader/SurahNavbar';
 import SettingsIcon from '@/app/components/Settings/SettingsIcon';
 import {Verse} from "@/app/types/verse";
+
+type Bookmark = {
+  chapterId: string;
+  verseNumber: string;
+  timestamp: number;
+};
 
 export default function ChapterPage() {
   const {chapterId} = useParams(); // Correct usage of useParams
@@ -20,6 +27,26 @@ export default function ChapterPage() {
   const [currentPlayingVerse, setCurrentPlayingVerse] = useState<string | null>(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const perPage = 20;
+  const [bookmarks, setBookmarks] = useState<Bookmark[]>([]);
+
+  useEffect(() => {
+    const savedBookmarks = Cookies.get('quranBookmarks');
+    if (savedBookmarks) {
+      setBookmarks(JSON.parse(savedBookmarks));
+    }
+  }, []);
+
+  const toggleBookmark = useCallback((chapterId: string, verseNumber: string) => {
+    setBookmarks(prev => {
+      const existing = prev.find(b => b.chapterId === chapterId && b.verseNumber === verseNumber);
+      const newBookmarks = existing
+        ? prev.filter(b => !(b.chapterId === chapterId && b.verseNumber === verseNumber))
+        : [...prev, {chapterId, verseNumber, timestamp: Date.now()}];
+
+      Cookies.set('quranBookmarks', JSON.stringify(newBookmarks));
+      return newBookmarks;
+    });
+  }, []);
 
   const handlePlayAyah = useCallback((chapterId: string, verseNumber: string) => {
     const verseKey = `${chapterId}-${verseNumber}`;
@@ -176,6 +203,10 @@ export default function ChapterPage() {
               chapterId={Number(chapterId)}
               isPlaying={currentPlayingVerse === `${chapterId}-${verse.verse_number}` && isPlaying}
               onPlayClick={() => handlePlayAyah(chapterId, verse.verse_number.toString())}
+              isBookmarked={bookmarks.some(b =>
+                b.chapterId === chapterId && b.verseNumber === verse.verse_number.toString()
+              )}
+              onBookmarkClick={() => toggleBookmark(chapterId, verse.verse_number.toString())}
             />
           </div>
         ))}
